@@ -9,7 +9,7 @@
 
 
 # 📝 Projeto de Algoritmos
-> Esse repertório possui o Desenvolvimento do Projeto do Segundo Periodo da Disciplina de Algoritmos o qual consiste em analisar algoritmos de ordenação buscando um entendimento crítico sobre a eficiência de cada um deles e também quando e como eles podem ser usados da melhor maneira.
+> Esse repositório possui o Desenvolvimento do Projeto do Segundo Periodo da Disciplina de Algoritmos o qual consiste em analisar algoritmos de ordenação buscando um entendimento crítico sobre a eficiência de cada um deles e também quando e como eles podem ser usados da melhor maneira.
 ## Algoritmos que serão Analisados
 > 1. Bubble Sort
 > 2. Insertion Sort
