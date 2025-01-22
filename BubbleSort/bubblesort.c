@@ -58,14 +58,6 @@ int main()
 
     end = ((double) clock()/CLOCKS_PER_SEC) - init; // Fim do temporizador do algoritmo
 
-    // Imprimir o array e o tempo de processamento do algoritmo
-    for(int j = 0; j < qtd_input; j++)
-    {
-        printf("%d ", ordened_array[j]);
-    }
-    printf("\n");
-    printf("TEMPO: %lfs \n", end);
-
     // Escrever no arquivo os valores do array e o tempo de processamento
     fprintf(file, "LISTA DE VALORES ORDENADOS: \n");
     int t = 0;
