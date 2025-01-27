@@ -1,4 +1,4 @@
-# Arquivo de Tempo de Execução(JAVA)
+# Arquivo de Tempo de Execução(C)
 ## Algoritmo: Bubble Sort
 | Entradas | 1º Tempo(s) | 2º Tempo(s) | 3º Tempo(s) | 4º Tempo(s) | Média de Tempo |
 |:---------|:------------|:------------|:------------|:------------|:---------------|
