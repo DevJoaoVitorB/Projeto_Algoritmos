@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 class BubbleSort
 {
-    private int[] ordenedArray = new int[100];
+    private int[] ordenedArray = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
     private int lengthArray;
 
     public BubbleSort(int[] array, int lengthArray)
@@ -24,15 +24,15 @@ class BubbleSort
         {
             for(int j = 0; j < lengthArray - i - 1; j++)
             {
-                if(ordenedList[j] > ordenedList[j+1])
+                if(ordenedArray[j] > ordenedArray[j+1])
                 {
-                    int aux = ordenedList[j];
-                    ordenedList[j] = ordenedList[j+1];
-                    ordenedList[j+1] = aux;
+                    int aux = ordenedArray[j];
+                    ordenedArray[j] = ordenedArray[j+1];
+                    ordenedArray[j+1] = aux;
                 }
             }
         }
-        return ordenedList;
+        return ordenedArray;
     }
 }
 
@@ -41,15 +41,15 @@ public class Main {
     {   
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        int[] array = new int[1000000];
-        int[] sortedArray = new int[1000000];
+        int[] array = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
+        int[] sortedArray = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
 
         // Informações da Quantidade de Entradas
         System.out.println("Enter quantity of input values: ");
         int lengthArray = scanner.nextInt();
         scanner.close();
 
-        for(int i = 0; i < lengthList; i++) // Adicionar i números aleatórios na lista
+        for(int i = 0; i < lengthArray; i++) // Adicionar i números aleatórios na lista
         {
             array[i] = random.nextInt(lengthArray);
         }
@@ -57,17 +57,19 @@ public class Main {
         BubbleSort BubbleSort = new BubbleSort(array, lengthArray);
 
         // Medir o Tempo de Processamento do Algoritmo Bubble Sort
-        double start = System.currentTimeMillis() / (double)1000;
-        sortedList = BubbleSort.ordenedList();
-        double end = (System.currentTimeMillis() / (double)1000) - start;
+        long start = System.currentTimeMillis();
+        sortedArray = BubbleSort.ordenedList();
+        long end = System.currentTimeMillis();
 
-        System.out.println(end);
+        double end_ = (end/(double)1000) - (start/(double)1000);
 
-        // Escrever em um arquivo o tempo de execução do algoritmo
+        System.out.println(end_);
+
+        // Escrever no Arquivo o Tempo de Execução do Algoritmo
         FileWriter file = new FileWriter("runtimefile", true);
         PrintWriter ffile = new PrintWriter(file);
 
-        ffile.printf("Runtime: %.6f\n", end);
+        ffile.printf("Runtime: %.6f\n", end_);
         file.close();
     }
 }
