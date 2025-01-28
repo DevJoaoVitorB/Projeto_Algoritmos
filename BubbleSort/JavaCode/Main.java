@@ -9,32 +9,29 @@ import java.util.Scanner;
 
 class BubbleSort
 {
-    private List<Integer> ordenedList;
+    private int[] ordenedList = new int[100];
     private int lengthList;
 
-    // Construtor da Classe BubbleSort
-    public BubbleSort(List<Integer> ordenedList, int lengthList)
+    public BubbleSort(int[] ordenedList, int lengthList)
     {
         this.ordenedList = ordenedList;
         this.lengthList = lengthList;
     }
 
-    public List<Integer> ordenedList()
+    public int[] ordenedList()
     {
         for(int i = 0; i < lengthList; i++)
         {
             for(int j = 0; j < lengthList - 1; j++)
             {
-                // Troca de Valores
-                if(ordenedList.get(j) > ordenedList.get(j+1))
+                if(ordenedList[j] > ordenedList[j+1])
                 {
-                    int aux = ordenedList.get(j);
-                    ordenedList.set(j, ordenedList.get(j+1));
-                    ordenedList.set(j+1, aux);
+                    int aux = ordenedList[j];
+                    ordenedList[j] = ordenedList[j+1];
+                    ordenedList[j+1] = aux;
                 }
             }
         }
-
         return ordenedList;
     }
 }
@@ -44,49 +41,33 @@ public class Main {
     {   
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        int cont = 0;
+        int[] ordenedList = new int[100];
+        int[] sortedList = new int[100];
 
-        // Informações da Quantidade de Entradas e Nome do Arquivo
+        // Informações da Quantidade de Entradas
         System.out.println("Enter quantity of input values: ");
         int lengthList = scanner.nextInt();
         scanner.close();
 
-        while(cont != 4)
+        for(int i = 0; i < lengthList; i++)
         {
-            List<Integer> ordenedList = new ArrayList<>();
-    
-            for(int i = 0; i < lengthList; i++)
-            {
-                ordenedList.add(random.nextInt(lengthList)); // Adicionar n números aleatórios na lista
-            }
-    
-            BubbleSort BubbleSort = new BubbleSort(ordenedList, lengthList);
-    
-            // Medir o Tempo de Processamento do Algoritmo Bubble Sort
-            double start = System.currentTimeMillis() / (double)1000;
-            List<Integer> sortedList = BubbleSort.ordenedList();
-            double end = (System.currentTimeMillis() / (double)1000) - start;
-    
-            System.out.println(end);
-    
-            // Gravar as Informações em um Arquivo.txt
-            FileWriter file = new FileWriter("runtimefile", true);
-            PrintWriter ffile = new PrintWriter(file);
-    
-            int break_ = 0;
-    
-            ffile.printf("LISTA DE VALORES ORDENADOS: \n");
-            for(int i = 0; i < lengthList; i++)
-            {
-                ffile.printf("%d ", sortedList.get(i));
-                break_++;
-    
-                if(break_ == 20){break_ = 0; ffile.printf("\n");}
-            }
-            ffile.printf("\nTEMPO: %.6f\n", end);
-    
-            file.close();
-            cont++;
+            ordenedList[i] = random.nextInt(lengthList); // Adicionar i números aleatórios na lista
         }
+
+        BubbleSort BubbleSort = new BubbleSort(ordenedList, lengthList);
+
+        // Medir o Tempo de Processamento do Algoritmo Bubble Sort
+        double start = System.currentTimeMillis() / (double)1000;
+        sortedList = BubbleSort.ordenedList();
+        double end = (System.currentTimeMillis() / (double)1000) - start;
+
+        System.out.println(end);
+
+        // Gravar as Informações em um Arquivo.txt
+        FileWriter file = new FileWriter("runtimefile", true);
+        PrintWriter ffile = new PrintWriter(file);
+
+        ffile.printf("Runtime: %.6f\n", end);
+        file.close();
     }
 }
