@@ -9,13 +9,13 @@ void bubble_sort(int qtd)
 {
     int i, j, aux;
 
-    // Verificar cada valor do Array com todos os outros
+    // Começa a verificar da posição 0 do array(vetor) até a último
     for(i = 0; i < qtd; i++)
     {
-        // Colocar o valor atual na posição certa do Array
+        // Verificar todas as posições do array n vezes n
         for(j = 0; j < qtd-1; j++)
         {      
-            if(ordened_array[j] > ordened_array[j+1])
+            if(ordened_array[j] > ordened_array[j+1]) // Verificar o valor da posição atual da esquerda para a direita fazendo a troca quando o valor atual for menor que o valor da direita 
             {
                 aux = ordened_array[j];                 // Valor Auxiliar recebe Atual Valor
                 ordened_array[j] = ordened_array[j+1];  // Valor Atual recebe Próximo Valor
@@ -45,7 +45,7 @@ int main()
     // Criar um arquivo com o nome informado
     file = fopen(name, "w");
 
-    // Gerar uma lista de X valores aleatorios(0 - 10.000)
+    // Gerar uma lista de X valores aleatorios(0 - 9,999)
     for(int i = 0; i < qtd_input; i++)
     {
         int value = rand() % 10000;
