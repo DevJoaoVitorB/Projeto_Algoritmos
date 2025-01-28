@@ -8,18 +8,16 @@ int *ordened_array;
 void bubble_sort(int qtd)
 {
     int i, j, aux;
-
-    // Começa a verificar da posição 0 do array(vetor) até a último
+    
     for(i = 0; i < qtd; i++)
     {
-        // Verificar todas as posições do array n vezes n
-        for(j = 0; j < qtd-1; j++)
+        for(j = 0; j < qtd-i-1; j++)
         {      
-            if(ordened_array[j] > ordened_array[j+1]) // Verificar o valor da posição atual da esquerda para a direita fazendo a troca quando o valor atual for menor que o valor da direita 
+            if(ordened_array[j] > ordened_array[j+1]) 
             {
-                aux = ordened_array[j];                 // Valor Auxiliar recebe Atual Valor
-                ordened_array[j] = ordened_array[j+1];  // Valor Atual recebe Próximo Valor
-                ordened_array[j+1] = aux;               // Próximo Valor recebe Valor Auxiliar
+                aux = ordened_array[j];
+                ordened_array[j] = ordened_array[j+1];
+                ordened_array[j+1] = aux;
             }
         }
     }
@@ -34,11 +32,11 @@ int main()
     FILE* file;
 
     printf("Bubble Sort Algorithm \n");
-    // Informa a quantidade de valores de entrada!
+    // Informa a quantidade de valores de entrada
     printf("Enter quantity of input values: ");
     scanf("%d", &qtd_input);
     ordened_array = (int *) malloc(qtd_input * sizeof(int));
-    // Informa o nome do arquivo!
+    // Informa o nome do arquivo
     printf("File Name: ");
     scanf("%s", name);
 
@@ -58,17 +56,10 @@ int main()
 
     end = (((double) clock())/CLOCKS_PER_SEC) - init; // Fim do temporizador do algoritmo
 
-    // Escrever no arquivo os valores do array e o tempo de processamento
-    fprintf(file, "LISTA DE VALORES ORDENADOS: \n");
-    int t = 0;
-    for(int k = 0; k < qtd_input; k++)
-    {
-        fprintf(file, "%d ", ordened_array[k]);
-        t++;
-
-        if(t == 20){fprintf(file, "\n"); t = 0;}
-    }
-    fprintf(file, "\nTEMPO: %lfs", end);
+    printf("%lf", end);
+    
+    // Escrever no arquivo o tempo de execução do algortimo 
+    fprintf(file, "Runtime: %lfs", end);
 
     return 0;
 }
