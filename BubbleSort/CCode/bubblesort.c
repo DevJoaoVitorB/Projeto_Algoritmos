@@ -49,14 +49,14 @@ int main()
         ordened_array[i] = rand() % 10000;
     }
 
-    init = ((double) clock())/CLOCKS_PER_SEC; // Inicio do temporizador do algoritmo
-    bubble_sort(qtd_input); // Chamada da função Bubble Sort
-    end = (((double) clock())/CLOCKS_PER_SEC) - init; // Fim do temporizador do algoritmo
+    start = ((double) clock())/CLOCKS_PER_SEC; // Inicio do temporizador do algoritmo
+    bubble_sort(length_array); // Chamada da função Bubble Sort
+    end = (((double) clock())/CLOCKS_PER_SEC) - start; // Fim do temporizador do algoritmo
 
     printf("%lf \n", end);
     
     // Escrever no arquivo o tempo de execução do algortimo 
     fprintf(file, "Runtime: %lfs", end);
-
+    
     return 0;
 }
