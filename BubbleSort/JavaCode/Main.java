@@ -9,20 +9,20 @@ import java.util.Scanner;
 
 class BubbleSort
 {
-    private int[] ordenedList = new int[100];
-    private int lengthList;
+    private int[] ordenedArray = new int[100];
+    private int lengthArray;
 
-    public BubbleSort(int[] ordenedList, int lengthList)
+    public BubbleSort(int[] array, int lengthArray)
     {
-        this.ordenedList = ordenedList;
-        this.lengthList = lengthList;
+        ordenedArray = array;
+        this.lengthArray = lengthArray;
     }
 
     public int[] ordenedList()
     {
-        for(int i = 0; i < lengthList; i++)
+        for(int i = 0; i < lengthArray; i++)
         {
-            for(int j = 0; j < lengthList - 1; j++)
+            for(int j = 0; j < lengthArray - i - 1; j++)
             {
                 if(ordenedList[j] > ordenedList[j+1])
                 {
@@ -41,20 +41,20 @@ public class Main {
     {   
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        int[] ordenedList = new int[100];
-        int[] sortedList = new int[100];
+        int[] array = new int[100];
+        int[] sortedArray = new int[100];
 
         // Informações da Quantidade de Entradas
         System.out.println("Enter quantity of input values: ");
-        int lengthList = scanner.nextInt();
+        int lengthArray = scanner.nextInt();
         scanner.close();
 
         for(int i = 0; i < lengthList; i++)
         {
-            ordenedList[i] = random.nextInt(lengthList); // Adicionar i números aleatórios na lista
+            array[i] = random.nextInt(lengthArray); // Adicionar i números aleatórios na lista
         }
 
-        BubbleSort BubbleSort = new BubbleSort(ordenedList, lengthList);
+        BubbleSort BubbleSort = new BubbleSort(array, lengthArray);
 
         // Medir o Tempo de Processamento do Algoritmo Bubble Sort
         double start = System.currentTimeMillis() / (double)1000;
@@ -63,7 +63,7 @@ public class Main {
 
         System.out.println(end);
 
-        // Gravar as Informações em um Arquivo.txt
+        // Escrever em um arquivo o tempo de execução do algoritmo
         FileWriter file = new FileWriter("runtimefile", true);
         PrintWriter ffile = new PrintWriter(file);
 
