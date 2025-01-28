@@ -51,7 +51,7 @@ int main()
     }
 
     start = ((double) clock())/CLOCKS_PER_SEC; // Inicio do temporizador do algoritmo
-    insertion_sort(qtd_input); // Chamada da função Insertion Sort
+    insertion_sort(length_array); // Chamada da função Insertion Sort
     end = (((double) clock())/CLOCKS_PER_SEC) - start; // Fim do temporizador do algoritmo
 
     // Escrever no arquivo o tempo de processamento
