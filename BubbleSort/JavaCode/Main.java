@@ -41,17 +41,17 @@ public class Main {
     {   
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        int[] array = new int[100];
-        int[] sortedArray = new int[100];
+        int[] array = new int[1000000];
+        int[] sortedArray = new int[1000000];
 
         // Informações da Quantidade de Entradas
         System.out.println("Enter quantity of input values: ");
         int lengthArray = scanner.nextInt();
         scanner.close();
 
-        for(int i = 0; i < lengthList; i++)
+        for(int i = 0; i < lengthList; i++) // Adicionar i números aleatórios na lista
         {
-            array[i] = random.nextInt(lengthArray); // Adicionar i números aleatórios na lista
+            array[i] = random.nextInt(lengthArray);
         }
 
         BubbleSort BubbleSort = new BubbleSort(array, lengthArray);
