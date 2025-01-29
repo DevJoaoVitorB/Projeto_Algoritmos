@@ -2,8 +2,6 @@ package JavaCode;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -41,35 +39,38 @@ public class Main {
     {   
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        int[] array = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
-        int[] sortedArray = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
-
+        int count = 0;
+        
         // Informações da Quantidade de Entradas
         System.out.println("Enter quantity of input values: ");
         int lengthArray = scanner.nextInt();
         scanner.close();
-
-        for(int i = 0; i < lengthArray; i++) // Adicionar i números aleatórios na lista
+        
+        while(count != 4)
         {
-            array[i] = random.nextInt(lengthArray);
+            int[] array = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
+
+            for(int i = 0; i < lengthArray; i++) // Adicionar i números aleatórios na lista
+            {
+                array[i] = random.nextInt(lengthArray);
+            }
+    
+            BubbleSort BubbleSort = new BubbleSort(array, lengthArray);
+    
+            // Medir o Tempo de Processamento do Algoritmo Bubble Sort
+            long start = System.nanoTime();
+            array = BubbleSort.ordenedList();
+            long end = System.nanoTime() - start;
+    
+            System.out.println(end);
+    
+            // Escrever no Arquivo o Tempo de Execução do Algoritmo
+            FileWriter file = new FileWriter("runtimefile", true);
+            PrintWriter ffile = new PrintWriter(file);
+    
+            ffile.printf("Runtime: %.0fns \n", (double)end);
+            file.close();
+            count++;
         }
-
-        BubbleSort BubbleSort = new BubbleSort(array, lengthArray);
-
-        // Medir o Tempo de Processamento do Algoritmo Bubble Sort
-        long start = System.currentTimeMillis();
-        sortedArray = BubbleSort.ordenedList();
-        long end = System.currentTimeMillis();
-
-        double end_ = (end/(double)1000) - (start/(double)1000);
-
-        System.out.println(end_);
-
-        // Escrever no Arquivo o Tempo de Execução do Algoritmo
-        FileWriter file = new FileWriter("runtimefile", true);
-        PrintWriter ffile = new PrintWriter(file);
-
-        ffile.printf("Runtime: %.6f\n", end_);
-        file.close();
     }
 }

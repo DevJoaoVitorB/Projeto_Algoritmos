@@ -56,7 +56,7 @@ int main()
     printf("%lf \n", end);
     
     // Escrever no arquivo o tempo de execução do algortimo 
-    fprintf(file, "Runtime: %lfs", end);
+    fprintf(file, "Runtime: %lfs \n", end);
     
     return 0;
 }
