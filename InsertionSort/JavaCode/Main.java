@@ -1,4 +1,3 @@
-package InsertionSort.JavaCode;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,32 +6,31 @@ import java.util.Scanner;
 
 class InsertionSort
 {
-    private int[] ordenedList;
-    private int lengthList;
+    private int[] ordenedArray = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
+    private int lengthArray;
 
     // Construtor da Classe InsertionSort
-    public InsertionSort(int[] ordenedList, int lengthList)
+    public InsertionSort(int[] array, int lengthArray)
     {
-        this.ordenedList = ordenedList;
-        this.lengthList = lengthList;
+        ordenedArray = array;
+        this.lengthArray = lengthArray;
     }
 
     public int[] ordenedList()
     {
-        for(int i = 1; i < lengthList; i++){
-
-        int j = i;
-
-        while (j > 0 && ordenedList[j] < ordenedList[j-1]) {
-                int aux = ordenedList[j];
-                ordenedList[j] = ordenedList[j-1];
-                ordenedList[j-1] = aux;
+        int aux, j;
+        for(int i = 1; i < lengthArray; i++)
+        {
+            j = i;
+            while (j > 0 && ordenedArray[j] < ordenedArray[j-1])
+            {
+                aux = ordenedArray[j];
+                ordenedArray[j] = ordenedArray[j-1];
+                ordenedArray[j-1] = aux;
                 j--;
+            }
         }
-
-        }
-        
-        return ordenedList;
+        return ordenedArray;
     }
 }
 
@@ -41,29 +39,28 @@ public class Main {
     {   
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        int value = 0;
+        int count = 0;
 
-        // Informações da Quantidade de Entradas e Nome do Arquivo
+        // Informação da Quantidade de Entradas
         System.out.println("Enter quantity of input values: ");
-        int lengthList = scanner.nextInt();
+        int lengthArray = scanner.nextInt();
 
         scanner.close();
 
-        while(value < 4){
-            int[] ordenedList = new int[lengthList];
+        while(count < 4){
+            int[] array = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
 
-            for(int i = 0; i < lengthList; i++)
+            for(int i = 0; i < lengthArray; i++)
             {
-                // ordenedList.add(random.nextInt(lengthList)); // Adicionar n números aleatórios na lista
-                ordenedList[i] = random.nextInt(lengthList);
+                array[i] = random.nextInt(lengthArray);
             }
 
-            InsertionSort insertionsort = new InsertionSort(ordenedList, lengthList);
+            InsertionSort insertionsort = new InsertionSort(array, lengthArray);
 
             // Medir o Tempo de Processamento do Algoritmo Bubble Sort
-            double start = System.nanoTime();
-            ordenedList = insertionsort.ordenedList();
-            double end = System.nanoTime() - start;
+            long start = System.nanoTime();
+            array = insertionsort.ordenedList();
+            long end = System.nanoTime() - start;
 
             System.out.println(end);
 
@@ -71,10 +68,10 @@ public class Main {
             FileWriter file = new FileWriter("runtimefile", true);
             PrintWriter ffile = new PrintWriter(file);
 
-            ffile.printf("\nRuntime: %fns \n", end);
+            ffile.printf("Runtime: %fns \n", (double)end);
 
             file.close();
-            value++;
+            count++;
         }
     }
 }

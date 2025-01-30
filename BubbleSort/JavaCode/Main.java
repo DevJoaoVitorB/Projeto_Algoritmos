@@ -1,4 +1,3 @@
-package JavaCode;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -10,6 +9,7 @@ class BubbleSort
     private int[] ordenedArray = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
     private int lengthArray;
 
+    // Construtor da Classe BubbleSort
     public BubbleSort(int[] array, int lengthArray)
     {
         ordenedArray = array;
@@ -55,11 +55,11 @@ public class Main {
                 array[i] = random.nextInt(lengthArray);
             }
     
-            BubbleSort BubbleSort = new BubbleSort(array, lengthArray);
+            BubbleSort bubblesort = new BubbleSort(array, lengthArray);
     
             // Medir o Tempo de Processamento do Algoritmo Bubble Sort
             long start = System.nanoTime();
-            array = BubbleSort.ordenedList();
+            array = bubblesort.ordenedList();
             long end = System.nanoTime() - start;
     
             System.out.println(end);
