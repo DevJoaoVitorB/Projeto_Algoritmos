@@ -2,28 +2,30 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Array que será ordenado pelo algoritmo Bubble Sort
+// Array que será ordenado pelo algoritmo Insertion Sort
 int *ordened_array;
 
-void bubble_sort(int length_array)
+void selection_sort(int length_array)
 {
-    int i, j, aux;
-    
-    for(i = 0; i < length_array; i++)
+    int i, j, temp, aux;
+
+    for(i = 0; i < length_array - 1; i++)
     {
-        for(j = 0; j < length_array-i-1; j++)
-        {      
-            if(ordened_array[j] > ordened_array[j+1]) 
-            {
-                aux = ordened_array[j];
-                ordened_array[j] = ordened_array[j+1];
-                ordened_array[j+1] = aux;
-            }
+        temp = i;
+        for(j = i + 1; j < length_array; j++)
+        {
+            if(ordened_array[j] < ordened_array[temp]) temp = j;
+        }
+        if(temp != i)
+        {
+            aux = ordened_array[i];
+            ordened_array[i] = ordened_array[temp];
+            ordened_array[temp] = aux;
         }
     }
 }
 
-void print_array(int length_array)
+void print(int length_array)
 {
     int i, break_;
     for(i = 0; i < length_array; i++)
@@ -42,7 +44,7 @@ int main()
 
     FILE* file;
 
-    printf("Bubble Sort Algorithm \n");
+    printf("Selection Sort Algorithm \n");
     // Informa a quantidade de valores de entrada
     printf("Enter quantity of input values: ");
     scanf("%d", &length_array);
@@ -61,14 +63,14 @@ int main()
     }
 
     start = ((double) clock())/CLOCKS_PER_SEC; // Inicio do temporizador do algoritmo
-    bubble_sort(length_array); // Chamada da função Bubble Sort
+    selection_sort(length_array); // Chamada da função Selection Sort
     end = (((double) clock())/CLOCKS_PER_SEC) - start; // Fim do temporizador do algoritmo
 
     printf("%lf \n", end);
-    // print_array(length_array); // Função para imprimir a lista ordenada
-    
-    // Escrever no arquivo o tempo de execução do algortimo 
+    // print(length_array); // Função para imprimir a lista ordenada
+
+    // Escrever no arquivo o tempo de processamento
     fprintf(file, "Runtime: %lfs \n", end);
-    
+
     return 0;
 }

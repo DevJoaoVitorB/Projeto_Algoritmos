@@ -24,6 +24,17 @@ void insertion_sort(int length_array)
     }
 }
 
+void print_array(int length_array)
+{
+    int i, break_;
+    for(i = 0; i < length_array; i++)
+    {
+        printf("%d ", ordened_array[i]);
+        break_++;
+        if(break_ == 20) {break_ = 0; printf("\n");}
+    }
+}
+
 int main()
 {
     int length_array = 0;
@@ -53,6 +64,9 @@ int main()
     start = ((double) clock())/CLOCKS_PER_SEC; // Inicio do temporizador do algoritmo
     insertion_sort(length_array); // Chamada da função Insertion Sort
     end = (((double) clock())/CLOCKS_PER_SEC) - start; // Fim do temporizador do algoritmo
+
+    printf("%lf \n", end);
+    // print_array(length_array); // Função para imprimir a lista ordenada
 
     // Escrever no arquivo o tempo de processamento
     fprintf(file, "Runtime: %lfs \n", end);
