@@ -2,27 +2,39 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Array que será ordenado pelo algoritmo Selection Sort
+// Array que será ordenado pelo algoritmo Quick Sort
 int *ordened_array;
 
-void selection_sort(int length_array)
+void quick_sort(int begin, int length_array)
 {
-    int i, j, temp, aux;
+    int i, j, pivo, aux;
+	i = begin;
+	j = length_array-1;
+    pivo = ordened_array[(begin + length_array) / 2];
 
-    for(i = 0; i < length_array - 1; i++)
-    {
-        temp = i;
-        for(j = i + 1; j < length_array; j++)
-        {
-            if(ordened_array[j] < ordened_array[temp]) temp = j;
-        }
-        if(temp != i)
-        {
-            aux = ordened_array[i];
-            ordened_array[i] = ordened_array[temp];
-            ordened_array[temp] = aux;
-        }
-    }
+	while(i <= j)
+	{
+		while(ordened_array[i] < pivo && i < length_array)
+		{
+			i++;
+		}
+		while(ordened_array[j] > pivo && j > begin)
+		{
+			j--;
+		}
+
+		if(i <= j)
+		{
+			aux = ordened_array[i];
+			ordened_array[i] = ordened_array[j];
+			ordened_array[j] = aux;
+			i++;
+			j--;
+		}
+	}
+
+	if(j > begin) quick_sort(begin, j+1);
+	if(i < length_array) quick_sort(i, length_array);
 }
 
 void print(int length_array)
@@ -44,7 +56,7 @@ int main()
 
     FILE* file;
 
-    printf("Selection Sort Algorithm \n");
+    printf("Quick Sort Algorithm \n");
     // Informa a quantidade de valores de entrada
     printf("Enter quantity of input values: ");
     scanf("%d", &length_array);
@@ -63,7 +75,7 @@ int main()
     }
 
     start = ((double) clock())/CLOCKS_PER_SEC; // Inicio do temporizador do algoritmo
-    selection_sort(length_array); // Chamada da função Selection Sort
+    quick_sort(0, length_array); // Chamada da função Merge Sort
     end = (((double) clock())/CLOCKS_PER_SEC) - start; // Fim do temporizador do algoritmo
 
     printf("%lf \n", end);

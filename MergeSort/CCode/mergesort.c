@@ -2,27 +2,12 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Array que será ordenado pelo algoritmo Selection Sort
+// Array que será ordenado pelo algoritmo Merge Sort
 int *ordened_array;
 
-void selection_sort(int length_array)
+void merge_sort(int length_array)
 {
-    int i, j, temp, aux;
-
-    for(i = 0; i < length_array - 1; i++)
-    {
-        temp = i;
-        for(j = i + 1; j < length_array; j++)
-        {
-            if(ordened_array[j] < ordened_array[temp]) temp = j;
-        }
-        if(temp != i)
-        {
-            aux = ordened_array[i];
-            ordened_array[i] = ordened_array[temp];
-            ordened_array[temp] = aux;
-        }
-    }
+    
 }
 
 void print(int length_array)
@@ -44,7 +29,7 @@ int main()
 
     FILE* file;
 
-    printf("Selection Sort Algorithm \n");
+    printf("Merge Sort Algorithm \n");
     // Informa a quantidade de valores de entrada
     printf("Enter quantity of input values: ");
     scanf("%d", &length_array);
@@ -63,11 +48,11 @@ int main()
     }
 
     start = ((double) clock())/CLOCKS_PER_SEC; // Inicio do temporizador do algoritmo
-    selection_sort(length_array); // Chamada da função Selection Sort
+    merge_sort(length_array); // Chamada da função Merge Sort
     end = (((double) clock())/CLOCKS_PER_SEC) - start; // Fim do temporizador do algoritmo
 
     printf("%lf \n", end);
-    // print(length_array); // Função para imprimir a lista ordenada
+    print(length_array); // Função para imprimir a lista ordenada
 
     // Escrever no arquivo o tempo de processamento
     fprintf(file, "Runtime: %lfs \n", end);
