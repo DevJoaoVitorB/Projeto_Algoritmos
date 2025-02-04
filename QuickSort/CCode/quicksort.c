@@ -5,16 +5,16 @@
 // Array que será ordenado pelo algoritmo Quick Sort
 int *ordened_array;
 
-void quick_sort(int begin, int length_array)
+void quick_sort(int begin, int end)
 {
     int i, j, pivo, aux;
 	i = begin;
-	j = length_array-1;
-    pivo = ordened_array[(begin + length_array) / 2];
+	j = end-1;
+    pivo = ordened_array[(begin + end) / 2];
 
 	while(i <= j)
 	{
-		while(ordened_array[i] < pivo && i < length_array)
+		while(ordened_array[i] < pivo && i < end)
 		{
 			i++;
 		}
@@ -34,7 +34,7 @@ void quick_sort(int begin, int length_array)
 	}
 
 	if(j > begin) quick_sort(begin, j+1);
-	if(i < length_array) quick_sort(i, length_array);
+	if(i < end) quick_sort(i, end);
 }
 
 void print(int length_array)

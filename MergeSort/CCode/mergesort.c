@@ -4,10 +4,56 @@
 
 // Array que será ordenado pelo algoritmo Merge Sort
 int *ordened_array;
+int *vetAux;
 
-void merge_sort(int length_array)
+void merge(int begin, int middle, int end)
 {
+    int auxBegin = begin, auxMiddle = middle+1, aux = 0, size = end-begin+1;
+    vetAux = (int*)malloc(size * sizeof(int));
+
+    while(auxBegin <= middle && auxMiddle <= end)
+    {
+        if(ordened_array[auxBegin] < ordened_array[auxMiddle]) {
+            vetAux[aux] = ordened_array[auxBegin];
+            auxBegin++;
+        } else {
+            vetAux[aux] = ordened_array[auxMiddle];
+            auxMiddle++;
+        }
+        aux++;
+    }
+
+    while(auxBegin <= middle)
+    {
+        vetAux[aux] = ordened_array[auxBegin];
+        auxBegin++;
+        aux++;
+    }
+
+    while(auxMiddle <= end) 
+    {
+        vetAux[aux] = ordened_array[auxMiddle];
+        auxMiddle++;
+        aux++;
+    }
+
+    for(aux = begin; aux <= end; aux++)
+    {    
+        ordened_array[aux] = vetAux[aux-begin];
+    }
     
+    free(vetAux);
+}
+
+void merge_sort(int begin, int end)
+{
+    if (begin < end) {
+        int middle = (end+begin)/2;
+
+        merge_sort(begin, middle);
+        merge_sort(middle+1, end);
+        merge(begin, middle, end);
+    }
 }
 
 void print(int length_array)
@@ -48,11 +94,11 @@ int main()
     }
 
     start = ((double) clock())/CLOCKS_PER_SEC; // Inicio do temporizador do algoritmo
-    merge_sort(length_array); // Chamada da função Merge Sort
+    merge_sort(0, length_array); // Chamada da função Merge Sort
     end = (((double) clock())/CLOCKS_PER_SEC) - start; // Fim do temporizador do algoritmo
 
     printf("%lf \n", end);
-    print(length_array); // Função para imprimir a lista ordenada
+    // print(length_array); // Função para imprimir a lista ordenada
 
     // Escrever no arquivo o tempo de processamento
     fprintf(file, "Runtime: %lfs \n", end);
