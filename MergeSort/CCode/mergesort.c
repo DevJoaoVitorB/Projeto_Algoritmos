@@ -95,7 +95,7 @@ int main()
     }
 
     start = ((double) clock())/CLOCKS_PER_SEC; // Inicio do temporizador do algoritmo
-    merge_sort(0, length_array); // Chamada da função Merge Sort
+    merge_sort(0, length_array - 1); // Chamada da função Merge Sort
     end = (((double) clock())/CLOCKS_PER_SEC) - start; // Fim do temporizador do algoritmo
 
     printf("%lf \n", end);

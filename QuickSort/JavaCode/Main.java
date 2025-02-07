@@ -4,60 +4,43 @@ import java.io.PrintWriter;
 import java.util.Random;
 import java.util.Scanner;
 
-class MergeSort {
+class QuickSort {
     public int[] ordenedList = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
 
-    public MergeSort(int[] ordenedList) {
+    public QuickSort(int[] ordenedList) {
         this.ordenedList = ordenedList;
     }
 
     public void OrdenedList(int begin, int end)
     {
-        if (begin < end) {
-            int middle = (end+begin)/2;
+        int i, j, pivo, aux;
+        i = begin;
+        j = end-1;
+        pivo = ordenedList[(begin + end) / 2];
     
-            OrdenedList(begin, middle);
-            OrdenedList(middle+1, end);
-            Merge(begin, middle, end);
-        }
-    }
-
-    public void Merge(int begin, int middle, int end)
-    {
-        int auxBegin = begin, auxMiddle = middle+1, aux = 0, size = end-begin+1;
-        int[] vetAux = new int[size];
-
-        while(auxBegin <= middle && auxMiddle <= end)
+        while(i <= j)
         {
-            if(ordenedList[auxBegin] < ordenedList[auxMiddle]) 
+            while(ordenedList[i] < pivo && i < end)
             {
-                vetAux[aux] = ordenedList[auxBegin];
-                auxBegin++;
-            } else {
-                vetAux[aux] = ordenedList[auxMiddle];
-                auxMiddle++;
+                i++;
             }
-            aux++;
+            while(ordenedList[j] > pivo && j > begin)
+            {
+                j--;
+            }
+    
+            if(i <= j)
+            {
+                aux = ordenedList[i];
+                ordenedList[i] = ordenedList[j];
+                ordenedList[j] = aux;
+                i++;
+                j--;
+            }
         }
-
-        while(auxBegin <= middle)
-        {
-            vetAux[aux] = ordenedList[auxBegin];
-            auxBegin++;
-            aux++;
-        }
-
-        while(auxMiddle <= end) 
-        {
-            vetAux[aux] = ordenedList[auxMiddle];
-            auxMiddle++;
-            aux++;
-        }
-
-        for(aux = begin; aux <= end; aux++)
-        {    
-            ordenedList[aux] = vetAux[aux-begin];
-        }
+    
+        if(j > begin) OrdenedList(begin, j+1);
+        if(i < end) OrdenedList(i, end);
     }
 
     public void PrintList(int[] sortedList, int lengthList)
@@ -69,7 +52,6 @@ class MergeSort {
         System.out.print("\n");
     }
 }
-
 
 public class Main {
     public static void main(String arg[]) throws IOException
@@ -92,15 +74,15 @@ public class Main {
                 list[i] = random.nextInt(lengthList);
             }
 
-            MergeSort mergesort = new MergeSort(list);
+            QuickSort quicksort = new QuickSort(list);
 
-            // Medir o Tempo de Processamento do Algoritmo Merge Sort
+            // Medir o Tempo de Processamento do Algoritmo Quick Sort
             long start = System.nanoTime();
-            mergesort.OrdenedList(0, lengthList - 1);
+            quicksort.OrdenedList(0, lengthList);
             long end = System.nanoTime() - start;
 
             System.out.println(end);
-            // mergesort.PrintList(mergesort.ordenedList, lengthList); // Imprimir a Lista Ordenada
+            // quicksort.PrintList(quicksort.ordenedList, lengthList); // Imprimir a Lista Ordenada
 
             // Gravar as Informações em um Arquivo.txt
             FileWriter file = new FileWriter("runtimefile", true);
