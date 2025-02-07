@@ -13,7 +13,8 @@ void merge(int begin, int middle, int end)
 
     while(auxBegin <= middle && auxMiddle <= end)
     {
-        if(ordened_array[auxBegin] < ordened_array[auxMiddle]) {
+        if(ordened_array[auxBegin] < ordened_array[auxMiddle]) 
+        {
             vetAux[aux] = ordened_array[auxBegin];
             auxBegin++;
         } else {
@@ -98,7 +99,7 @@ int main()
     end = (((double) clock())/CLOCKS_PER_SEC) - start; // Fim do temporizador do algoritmo
 
     printf("%lf \n", end);
-    // print(length_array); // Função para imprimir a lista ordenada
+    print(length_array); // Função para imprimir a lista ordenada
 
     // Escrever no arquivo o tempo de processamento
     fprintf(file, "Runtime: %lfs \n", end);

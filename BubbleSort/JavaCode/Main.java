@@ -6,31 +6,41 @@ import java.util.Scanner;
 
 class BubbleSort
 {
-    private int[] ordenedArray = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
-    private int lengthArray;
+    private int[] ordenedList = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
+    private int lengthList;
 
-    // Construtor da Classe BubbleSort
-    public BubbleSort(int[] array, int lengthArray)
+    public BubbleSort(int[] ordenedList, int lengthList)
     {
-        ordenedArray = array;
-        this.lengthArray = lengthArray;
+        this.ordenedList = ordenedList;
+        this.lengthList = lengthList;
     }
 
-    public int[] ordenedList()
+    public int[] OrdenedList()
     {
-        for(int i = 0; i < lengthArray; i++)
+        int i, j, aux;
+
+        for(i = 0; i < lengthList; i++)
         {
-            for(int j = 0; j < lengthArray - i - 1; j++)
+            for(j = 0; j < lengthList - i - 1; j++)
             {
-                if(ordenedArray[j] > ordenedArray[j+1])
+                if(ordenedList[j] > ordenedList[j+1])
                 {
-                    int aux = ordenedArray[j];
-                    ordenedArray[j] = ordenedArray[j+1];
-                    ordenedArray[j+1] = aux;
+                    aux = ordenedList[j];
+                    ordenedList[j] = ordenedList[j+1];
+                    ordenedList[j+1] = aux;
                 }
             }
         }
-        return ordenedArray;
+        return ordenedList;
+    }
+
+    public void PrintList(int[] sortedList, int lengthList)
+    {
+        for(int i = 0; i < lengthList; i++)
+        {
+            System.out.printf("%d ", sortedList[i]);
+        }
+        System.out.print("\n");
     }
 }
 
@@ -43,26 +53,27 @@ public class Main {
         
         // Informações da Quantidade de Entradas
         System.out.println("Enter quantity of input values: ");
-        int lengthArray = scanner.nextInt();
+        int lengthList = scanner.nextInt();
         scanner.close();
         
         while(count != 4)
         {
-            int[] array = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
+            int[] list = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
 
-            for(int i = 0; i < lengthArray; i++) // Adicionar i números aleatórios na lista
+            for(int i = 0; i < lengthList; i++) // Adicionar i números aleatórios na lista
             {
-                array[i] = random.nextInt(lengthArray);
+                list[i] = random.nextInt(lengthList);
             }
     
-            BubbleSort bubblesort = new BubbleSort(array, lengthArray);
+            BubbleSort bubblesort = new BubbleSort(list, lengthList);
     
             // Medir o Tempo de Processamento do Algoritmo Bubble Sort
             long start = System.nanoTime();
-            array = bubblesort.ordenedList();
+            list = bubblesort.OrdenedList();
             long end = System.nanoTime() - start;
     
             System.out.println(end);
+            // bubblesort.PrintList(list, lengthList); // Imprimir a Lista Ordenada
     
             // Escrever no Arquivo o Tempo de Execução do Algoritmo
             FileWriter file = new FileWriter("runtimefile", true);

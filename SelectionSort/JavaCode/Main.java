@@ -4,12 +4,11 @@ import java.io.PrintWriter;
 import java.util.Random;
 import java.util.Scanner;
 
-class InsertionSort
-{
+class SelectionSort {
     private int[] ordenedList = new int[100]; // Mudar o tamanho do array com base na quantidade de entradas
     private int lengthList;
-
-    public InsertionSort(int[] ordenedList, int lengthList)
+   
+    public SelectionSort(int[] ordenedList, int lengthList)
     {
         this.ordenedList = ordenedList;
         this.lengthList = lengthList;
@@ -17,17 +16,20 @@ class InsertionSort
 
     public int[] OrdenedList()
     {
-        int i, j, aux;
+        int i, j, min, aux;
 
-        for(i = 1; i < lengthList; i++)
+        for(i = 0; i < (lengthList-1); i++)
         {
-            j = i;
-            while (j > 0 && ordenedList[j] < ordenedList[j-1])
+            min = i;
+            for(j = (i+1); j < lengthList; j++)
             {
-                aux = ordenedList[j];
-                ordenedList[j] = ordenedList[j-1];
-                ordenedList[j-1] = aux;
-                j--;
+                if(ordenedList[j] < ordenedList[min]) min = j;
+            }
+            if (i != min)
+            { 
+                aux = ordenedList[i];
+                ordenedList[i] = ordenedList[min];
+                ordenedList[min] = aux;
             }
         }
         return ordenedList;
@@ -50,7 +52,7 @@ public class Main {
         Random random = new Random();
         int count = 0;
 
-        // Informação da Quantidade de Entradas
+        // Informações da Quantidade de Entradas e Nome do Arquivo
         System.out.println("Enter quantity of input values: ");
         int lengthList = scanner.nextInt();
 
@@ -64,15 +66,15 @@ public class Main {
                 list[i] = random.nextInt(lengthList);
             }
 
-            InsertionSort insertionsort = new InsertionSort(list, lengthList);
+            SelectionSort selectionsort = new SelectionSort(list, lengthList);
 
-            // Medir o Tempo de Processamento do Algoritmo Insertion Sort
+            // Medir o Tempo de Processamento do Algoritmo Selection Sort
             long start = System.nanoTime();
-            list = insertionsort.OrdenedList();
+            list = selectionsort.OrdenedList();
             long end = System.nanoTime() - start;
 
             System.out.println(end);
-            // insertionsort.PrintList(list, lengthList); // Imprimir a Lista Ordenada
+            // selectionsort.PrintList(list, lengthList); // Imprimir a Lista Ordenada
 
             // Gravar as Informações em um Arquivo.txt
             FileWriter file = new FileWriter("runtimefile", true);
