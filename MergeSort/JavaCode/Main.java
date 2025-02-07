@@ -92,7 +92,7 @@ public class Main {
 
             // Medir o Tempo de Processamento do Algoritmo Bubble Sort
             long start = System.nanoTime();
-            mergesort.OrdenedList(0, lengthList);
+            mergesort.OrdenedList(0, lengthList - 1);
             long end = System.nanoTime() - start;
 
             System.out.println(end);

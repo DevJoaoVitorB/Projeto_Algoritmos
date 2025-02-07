@@ -99,7 +99,7 @@ int main()
     end = (((double) clock())/CLOCKS_PER_SEC) - start; // Fim do temporizador do algoritmo
 
     printf("%lf \n", end);
-    print(length_array); // Função para imprimir a lista ordenada
+    // print(length_array); // Função para imprimir a lista ordenada
 
     // Escrever no arquivo o tempo de processamento
     fprintf(file, "Runtime: %lfs \n", end);
